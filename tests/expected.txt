@@ -1,7 +1,7 @@
-rm -Rf bin
-mkdir bin
-javac -encoding ISO-8859-1 -sourcepath src -d bin `find ./* | grep .java`
-cd bin && java habitaciones.dominio.controladores.test.Tester `find ./../tests | grep .xml | sort`
+rm -Rf build
+mkdir build
+javac -encoding ISO-8859-1 -sourcepath src/main/java -d build `find ./src/main/java/* | grep -e "\.java"`
+cd build && java habitaciones.dominio.controladores.test.Tester `find ./../tests | grep .xml | sort`
 entra
 entra
 Finalizado.
