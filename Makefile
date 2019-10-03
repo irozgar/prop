@@ -1,34 +1,28 @@
-FILES=`find ./* | grep .java`
-TEST_FILES=`find ./../tests | grep .xml | sort`
+.PHONY: build run test consola jar clean all
 
-all:
-	rm -Rf bin
-	mkdir bin
-	javac -encoding ISO-8859-1 -sourcepath src -d bin $(FILES)
+FILES=$(find ./src/main/java/* | grep -e "\.java")
+TEST_FILES := $(shell find tests -type f -regex ".*\.xml" | sort)
+TEST_FILES_PARAMETERS := $(addprefix ../../../../, $(TEST_FILES))
+BUILD_DIR=build
+GRADLE_BIN=./gradlew
+CLASSES_DIR=$(BUILD_DIR)/classes/java/main
 
-jar: all
-	cd bin; jar cfe ../habitaciones.jar habitaciones.dominio.controladores.test.TestInterfaz *
-	cd ..
+all: clean jar
 
-run: jar
-	java -jar habitaciones.jar
+jar:
+	@$(GRADLE_BIN) distZip
 
-consola:
-	cd bin && java habitaciones.dominio.controladores.CtrlPrincipal
+run:
+	@$(GRADLE_BIN) run
 
-test: all
-	cd bin && java habitaciones.dominio.controladores.test.Tester $(TEST_FILES)
+consola: build
+	@cd $(CLASSES_DIR) && java habitaciones.dominio.controladores.CtrlPrincipal
 
-#documentacion:
-#	rm -Rf doc
-#	mkdir doc
-#	javadoc -encoding ISO-8859-1 -sourcepath src -d doc $(FILES)
+test: build
+	@cd $(CLASSES_DIR) && java habitaciones.dominio.controladores.test.Tester $(TEST_FILES_PARAMETERS)
 
-#prueba:
-#	cd bin && java habitaciones.dominio.controladores.test.Prueba
+build:
+	@$(GRADLE_BIN) build
 
-#tester:
-#	cd bin && java habitaciones.dominio.controladores.test.Tester
-
-interfaz:
-	cd bin && java habitaciones.dominio.controladores.test.TestInterfaz
+clean:
+	@$(GRADLE_BIN) clean

@@ -2,7 +2,9 @@
 
 make test > test_result.txt 2> /dev/null
 
-diff test_result.txt tests/expected.txt > /dev/null
+sed -i '0,/actionable tasks/d' test_result.txt
+
+diff test_result.txt tests/expected.txt
 
 if [ "$?" == 0 ]; then
   echo -e "\e[32mTESTS PASSED\e[0m"
