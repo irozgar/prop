@@ -1,4 +1,5 @@
 FILES=`find ./* | grep .java`
+TEST_FILES=`find ./../tests | grep .xml | sort`
 
 all:
 	rm -Rf bin
@@ -14,6 +15,9 @@ run: jar
 
 consola:
 	cd bin && java habitaciones.dominio.controladores.CtrlPrincipal
+
+test: all
+	cd bin && java habitaciones.dominio.controladores.test.Tester $(TEST_FILES)
 
 #documentacion:
 #	rm -Rf doc

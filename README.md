@@ -39,6 +39,9 @@ Hay varios archivos XML guardados en el directorio test con los que se hacen dis
  - multiples_cambios_por_restr.xml: Genera la habitacion despues de hacer varios cambios varias veces
  - mueble_mismo_tamano_hab.xml: La habitacion tiene el mismo tamaño que el mueble, por lo que este ocupa toda la habitacion.
  - muebles_ocupan_toda_habitacion.xml: Diversos muebles ocupan toda la superficie de la habitacion
+ 
+**NOTA** Estas pruebas se pueden ejecutar y comprobar de manera automática ejecutando el script
+`$ ./run-tests.sh`
 
 ### Estructura de los archivos XML
 Los archivos XML tendran la siguiente estructura:

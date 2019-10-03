@@ -1,0 +1,61 @@
+rm -Rf bin
+mkdir bin
+javac -encoding ISO-8859-1 -sourcepath src -d bin `find ./* | grep .java`
+cd bin && java habitaciones.dominio.controladores.test.Tester `find ./../tests | grep .xml | sort`
+entra
+entra
+Finalizado.
+Filas: 20, Cols: 20
+X|X|X|X|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|X|X|X|
+#| | | | | | | | | | | | | | | | | | |2| |X|
+#| |1|1|1|3|3|3|5|5| | | | | | | | | |2| |X|
+#| |1|1|1| | | | | | | | | | | | | | |2| |X|
+#| |1|1|1| | | | | | | | | | | | | | | | |X|
+#| |1|1|1| | | | | | | | | | | | | | | | |X|
+#| |1|1|1| | | | | | | | | | | | | | | | |X|
+X| | | | | | | | | | | | | | | | | | | | |X|
+X| | | | | | | | | | | | | | | | | | | | |X|
+X| | | | | | | | | | | | | | | | | | | | |X|
+X| | | | | | | | | | | | | | | | | | | | |X|
+X| | | | | | | | | | | | | | | | | | | | |X|
+X| | | | | | | | | | | | | | | | | | | | |X|
+X| | | | | | | | | | | | | | | | | | | | |X|
+X| | | | | | | | | | | | | | | | | | | | |X|
+X| | | | | | | | | | | | | | | | | | | | |X|
+X| | | | | | | | | | | | | | | | | | | | |X|
+X| | | | | | | | | | | | | | | | | | | | |X|
+X| | | | | | | | | | | | | | | | | | | | |X|
+X| | | | | | | | | | | | | | | | | | | | |X|
+X| | | | | | | | | | | | | | | | | | | | |X|
+X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|
+Finalizado.
+Filas: 5, Cols: 5
+X|X|X|X|X|X|X|
+X|0|0|0|0|0|X|
+X|0|0|0|0|0|X|
+X|0|0|0|0|0|X|
+X|0|0|0|0|0|X|
+X|0|0|0|0|0|X|
+X|X|X|X|X|X|X|
+Finalizado.
+Filas: 3, Cols: 3
+X|X|X|X|X|
+X|2|2|2|X|
+X|3|1|1|X|
+X|3|1|1|X|
+X|X|X|X|X|
+Finalizado.
+Filas: 7, Cols: 7
+X|X|X|X|X|X|X|X|X|
+X| |1|2| | | | |X|
+X|3|0|0|4| | | |X|
+X|5|0|0|6| | | |X|
+X|7|0|0|8| | | |X|
+X| |9| | | | | |X|
+X| | | | | | | |X|
+X| | | | | | | |X|
+X|X|X|X|X|X|X|X|X|
+No se pudo generar la habitacion: No existe solucion posible
+No se pudo generar la habitacion: No existe solucion posible
+No se pudo generar la habitacion: No existe solucion posible
+No se pudo generar la habitacion: No existe solucion posible
