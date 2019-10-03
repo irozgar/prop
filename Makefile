@@ -3,7 +3,6 @@
 FILES=$(find ./src/main/java/* | grep -e "\.java")
 TEST_FILES := $(shell find tests -type f -regex ".*\.xml" | sort)
 TEST_FILES_PARAMETERS := $(addprefix ../../../../, $(TEST_FILES))
-PWD=`pwd`
 BUILD_DIR=build
 GRADLE_BIN=./gradlew
 CLASSES_DIR=$(BUILD_DIR)/classes/java/main
