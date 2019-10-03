@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><root><Habitacion><filas>2</filas><columnas>2</columnas></Habitacion><Mueble><id>4</id><color_red>111</color_red><color_green>111</color_green><tipo>SILLA</tipo><color_blue>111</color_blue><anchura>3</anchura><longitud>1</longitud></Mueble></root>

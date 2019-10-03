@@ -1,0 +1,1 @@
+Las instrucciones de como compilar y ejecutar el programa estan en el archivo README.md

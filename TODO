@@ -1,0 +1,8 @@
+- [DONE] Guardar y Cargar restricciones.
+- Hacer una copia de habitacion/muebles/restricciones antes de generar
+- [DONE] Cuando se añada una restriccion, no se puede poner el mismo mueble
+- [DONE] No permitir generar una habitación si no hay por lo menos una instancia de habitación con filas y columnas
+- Mostrar error cuando los datos no sean válidos
+- Mostrar error si no se puede generar la habitación
+- [DONE] Crear RestriccionDistancia comprobar que la distancia es mayor que 0
+- [DONE] No permitir crear muebles con area 0 o valores de anchura o longitud negativos

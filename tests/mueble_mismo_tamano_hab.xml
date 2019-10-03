@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><root><Habitacion><filas>5</filas><columnas>5</columnas></Habitacion><Mueble><id>0</id><color_red>111</color_red><color_green>111</color_green><tipo>MESA</tipo><color_blue>111</color_blue><anchura>5</anchura><longitud>5</longitud></Mueble></root>

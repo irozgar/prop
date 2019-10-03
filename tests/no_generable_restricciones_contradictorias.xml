@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<root>
+    <Habitacion>
+        <filas>11</filas>
+        <columnas>11</columnas>
+    </Habitacion>
+    <Mueble>
+        <id>0</id>
+        <color_red>111</color_red>
+        <color_green>111</color_green>
+        <tipo>MESA</tipo>
+        <color_blue>111</color_blue>
+        <anchura>1</anchura>
+        <longitud>1</longitud>
+    </Mueble>
+    <Mueble>
+        <id>1</id>
+        <color_red>222</color_red>
+        <color_green>222</color_green>
+        <tipo>SILLA</tipo>
+        <color_blue>222</color_blue>
+        <anchura>1</anchura>
+        <longitud>1</longitud>
+    </Mueble>
+    <Restriccion>
+        <id>0</id>
+        <distancia>7</distancia>
+        <Tipo>DistanciaMin</Tipo>
+        <objeto2_id>1</objeto2_id>
+        <objeto1_id>0</objeto1_id>
+    </Restriccion>
+    <Restriccion>
+        <id>1</id>
+        <distancia>2</distancia>
+        <Tipo>DistanciaMax</Tipo>
+        <objeto2_id>1</objeto2_id>
+        <objeto1_id>0</objeto1_id>
+    </Restriccion>
+</root>
