@@ -18,7 +18,7 @@ run:
 consola: build
 	@cd $(CLASSES_DIR) && java habitaciones.dominio.controladores.CtrlPrincipal
 
-test:
+test: build
 	@cd $(CLASSES_DIR) && java habitaciones.dominio.controladores.test.Tester $(TEST_FILES_PARAMETERS)
 
 build:
