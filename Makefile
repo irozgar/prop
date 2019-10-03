@@ -26,13 +26,3 @@ build:
 
 clean:
 	@$(GRADLE_BIN) clean
-#documentacion:
-#	rm -Rf doc
-#	mkdir doc
-#	javadoc -encoding ISO-8859-1 -sourcepath src -d doc $(FILES)
-
-#prueba:
-#	cd $(BUILD_DIR) && java habitaciones.dominio.controladores.test.Prueba
-
-#tester:
-#	cd $(BUILD_DIR) && java habitaciones.dominio.controladores.test.Tester
