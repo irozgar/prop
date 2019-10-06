@@ -5,16 +5,22 @@ import edu.upc.fib.prop.c8g2.domain.Color;
 import java.util.Objects;
 
 public class Furniture {
+    private FurnitureId id;
     private final FurnitureLength length;
     private final FurnitureWidth width;
     private final FurnitureType type;
     private Color color;
 
-    public Furniture(FurnitureLength length, FurnitureWidth width, FurnitureType type, Color color) {
+    public Furniture(FurnitureId id, FurnitureLength length, FurnitureWidth width, FurnitureType type, Color color) {
+        this.id = id;
         this.length = length;
         this.width = width;
         this.type = type;
         this.color = color;
+    }
+
+    public FurnitureId getId() {
+        return id;
     }
 
     public FurnitureLength getLength() {
@@ -38,7 +44,8 @@ public class Furniture {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Furniture furniture = (Furniture) o;
-        return length.equals(furniture.length) &&
+        return id.equals(furniture.id) &&
+                length.equals(furniture.length) &&
                 width.equals(furniture.width) &&
                 type == furniture.type &&
                 color.equals(furniture.color);
@@ -46,6 +53,6 @@ public class Furniture {
 
     @Override
     public int hashCode() {
-        return Objects.hash(length, width, type, color);
+        return Objects.hash(id, length, width, type, color);
     }
 }

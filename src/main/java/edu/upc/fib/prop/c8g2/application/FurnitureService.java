@@ -10,8 +10,9 @@ public class FurnitureService {
         this.repository = repository;
     }
 
-    public void create(int length, int width, FurnitureType type, int red, int green, int blue) {
+    public void create(String id, int length, int width, FurnitureType type, int red, int green, int blue) {
         Furniture furniture = new Furniture(
+                new FurnitureId(id),
                 new FurnitureLength(length),
                 new FurnitureWidth(width),
                 type,

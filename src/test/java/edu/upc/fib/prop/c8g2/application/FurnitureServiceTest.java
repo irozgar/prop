@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class FurnitureServiceTest {
@@ -17,6 +18,7 @@ public class FurnitureServiceTest {
         FurnitureService service = new FurnitureService(repository);
         Furniture expected = FurnitureMother.random();
         service.create(
+                expected.getId().getValue(),
                 expected.getLength().getValue(),
                 expected.getWidth().getValue(),
                 expected.getType(),
