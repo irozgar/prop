@@ -30,24 +30,31 @@ public class FurnitureServiceWrapper {
     }
 
     private FurnitureType mapFurnitureType(TMueble type) {
-        if (type == TMueble.MESA) {
-            return FurnitureType.TABLE;
+        switch (type) {
+            case MESA: return FurnitureType.TABLE;
+            case CAMA: return FurnitureType.BED;
+            case SILLA: return FurnitureType.CHAIR;
+            case ARMARIO: return FurnitureType.CLOSET;
+            case ELECTR_COCINA: return FurnitureType.HOME_APPLIANCE;
+            default: return FurnitureType.UNKNOWN;
         }
-
-        return FurnitureType.UNKNOWN;
     }
 
     private TMueble mapTMueble(FurnitureType type) {
-        if (type == FurnitureType.TABLE) {
-            return TMueble.MESA;
+        switch (type) {
+            case TABLE: return TMueble.MESA;
+            case BED: return TMueble.CAMA;
+            case CHAIR: return TMueble.SILLA;
+            case CLOSET: return TMueble.ARMARIO;
+            case HOME_APPLIANCE: return TMueble.ELECTR_COCINA;
+            default: return TMueble.DESCONOCIDO;
         }
-
-        return TMueble.DESCONOCIDO;
     }
 
     public void remove(int id) {
         UUID uuid = idMap.get(id);
         furnitureService.remove(uuid.toString());
+        idMap.remove(id);
     }
 
     public Mueble search(int id) {
