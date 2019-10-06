@@ -81,4 +81,25 @@ public class FurnitureServiceWrapperShould {
         assertEquals(FurnitureType.TABLE, found.getType());
         assertEquals(expected.getColor(), found.getColor());
     }
+
+    @Test
+    void searchesAllFurniture() {
+        FurnitureRepository repository = new InMemoryFurnitureRepository();
+        FurnitureService service = new FurnitureService(repository);
+        FurnitureServiceWrapper wrapper = new FurnitureServiceWrapper(service);
+        Furniture expected = FurnitureMother.random();
+        wrapper.create(
+                2,
+                expected.getLength().getValue(),
+                expected.getWidth().getValue(),
+                TMueble.MESA,
+                expected.getColor().getRed(),
+                expected.getColor().getGreen(),
+                expected.getColor().getBlue()
+        );
+
+        List<Furniture> found = wrapper.all();
+
+        assertEquals(1, found.size());
+    }
 }

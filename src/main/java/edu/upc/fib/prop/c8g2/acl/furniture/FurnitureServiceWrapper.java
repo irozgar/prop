@@ -6,6 +6,7 @@ import edu.upc.fib.prop.c8g2.domain.furniture.FurnitureType;
 import habitaciones.dominio.modelos.enums.TMueble;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -46,5 +47,9 @@ public class FurnitureServiceWrapper {
         UUID uuid = idMap.get(id);
         Optional<Furniture> furniture = furnitureService.search(uuid.toString());
         return furniture.orElseThrow(() -> new IllegalArgumentException("There is no furniture with the id: " + id));
+    }
+
+    public List<Furniture> all() {
+        return furnitureService.all();
     }
 }
