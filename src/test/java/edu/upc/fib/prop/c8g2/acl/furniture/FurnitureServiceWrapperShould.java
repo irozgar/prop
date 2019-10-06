@@ -6,6 +6,7 @@ import edu.upc.fib.prop.c8g2.domain.furniture.FurnitureMother;
 import edu.upc.fib.prop.c8g2.domain.furniture.FurnitureRepository;
 import edu.upc.fib.prop.c8g2.domain.furniture.FurnitureType;
 import edu.upc.fib.prop.c8g2.infrastructure.persistence.InMemoryFurnitureRepository;
+import habitaciones.dominio.modelos.Mueble;
 import habitaciones.dominio.modelos.enums.TMueble;
 import org.junit.jupiter.api.Test;
 
@@ -74,12 +75,15 @@ public class FurnitureServiceWrapperShould {
                 expected.getColor().getBlue()
         );
 
-        Furniture found = wrapper.search(2);
+        Mueble mueble = wrapper.search(2);
 
-        assertEquals(expected.getLength(), found.getLength());
-        assertEquals(expected.getWidth(), found.getWidth());
-        assertEquals(FurnitureType.TABLE, found.getType());
-        assertEquals(expected.getColor(), found.getColor());
+        assertEquals(2, mueble.getId());
+        assertEquals(expected.getLength().getValue(), mueble.getLongitud());
+        assertEquals(expected.getWidth().getValue(), mueble.getAnchura());
+        assertEquals(TMueble.MESA, mueble.getTipoMueble());
+        assertEquals(expected.getColor().getRed(), mueble.getColor().getRed());
+        assertEquals(expected.getColor().getGreen(), mueble.getColor().getGreen());
+        assertEquals(expected.getColor().getBlue(), mueble.getColor().getBlue());
     }
 
     @Test
@@ -98,8 +102,7 @@ public class FurnitureServiceWrapperShould {
                 expected.getColor().getBlue()
         );
 
-        List<Furniture> found = wrapper.all();
-
+        List<Mueble> found = wrapper.all();
         assertEquals(1, found.size());
     }
 }

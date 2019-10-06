@@ -69,22 +69,4 @@ public class FurnitureServiceTest {
 
         assertEquals(Optional.of(expected), service.search(expected.getId().getValue()));
     }
-
-    @Test
-    void searchAllFurniture() {
-        FurnitureRepository repository = new InMemoryFurnitureRepository();
-        FurnitureService service = new FurnitureService(repository);
-        Furniture expected = FurnitureMother.random();
-        service.create(
-                expected.getId().getValue(),
-                expected.getLength().getValue(),
-                expected.getWidth().getValue(),
-                expected.getType(),
-                expected.getColor().getRed(),
-                expected.getColor().getGreen(),
-                expected.getColor().getBlue()
-        );
-
-        assertEquals(1, service.all().size());
-    }
 }

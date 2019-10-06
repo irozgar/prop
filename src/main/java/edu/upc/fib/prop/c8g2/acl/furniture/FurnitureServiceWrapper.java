@@ -3,12 +3,11 @@ package edu.upc.fib.prop.c8g2.acl.furniture;
 import edu.upc.fib.prop.c8g2.application.FurnitureService;
 import edu.upc.fib.prop.c8g2.domain.furniture.Furniture;
 import edu.upc.fib.prop.c8g2.domain.furniture.FurnitureType;
+import habitaciones.dominio.modelos.Color;
+import habitaciones.dominio.modelos.Mueble;
 import habitaciones.dominio.modelos.enums.TMueble;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 public class FurnitureServiceWrapper {
     private FurnitureService furnitureService;
@@ -38,18 +37,46 @@ public class FurnitureServiceWrapper {
         return FurnitureType.UNKNOWN;
     }
 
+    private TMueble mapTMueble(FurnitureType type) {
+        if (type == FurnitureType.TABLE) {
+            return TMueble.MESA;
+        }
+
+        return TMueble.DESCONOCIDO;
+    }
+
     public void remove(int id) {
         UUID uuid = idMap.get(id);
         furnitureService.remove(uuid.toString());
     }
 
-    public Furniture search(int id) {
+    public Mueble search(int id) {
         UUID uuid = idMap.get(id);
         Optional<Furniture> furniture = furnitureService.search(uuid.toString());
-        return furniture.orElseThrow(() -> new IllegalArgumentException("There is no furniture with the id: " + id));
+        return createFromFurniture(id, furniture.orElseThrow(() -> new IllegalArgumentException("There is no furniture with the id: " + id)));
     }
 
-    public List<Furniture> all() {
-        return furnitureService.all();
+    private Mueble createFromFurniture(int id, Furniture furniture) {
+        Color color = new Color(
+                furniture.getColor().getRed(),
+                furniture.getColor().getGreen(),
+                furniture.getColor().getBlue()
+        );
+        return new Mueble(
+                id,
+                mapTMueble(furniture.getType()),
+                color,
+                furniture.getLength().getValue(),
+                furniture.getWidth().getValue()
+        );
+    }
+
+    public List<Mueble> all() {
+        Set<Integer> ids = idMap.keySet();
+        List<Mueble> muebles = new ArrayList<>();
+        for (Integer id : ids) {
+            muebles.add(search(id));
+        }
+        return muebles;
     }
 }

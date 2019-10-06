@@ -3,7 +3,6 @@ package edu.upc.fib.prop.c8g2.application;
 import edu.upc.fib.prop.c8g2.domain.Color;
 import edu.upc.fib.prop.c8g2.domain.furniture.*;
 
-import java.util.List;
 import java.util.Optional;
 
 public class FurnitureService {
@@ -30,9 +29,5 @@ public class FurnitureService {
 
     public Optional<Furniture> search(String id) {
         return repository.search(new FurnitureId(id));
-    }
-
-    public List<Furniture> all() {
-        return this.repository.all();
     }
 }
