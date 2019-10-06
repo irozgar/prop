@@ -3,6 +3,8 @@ package edu.upc.fib.prop.c8g2.application;
 import edu.upc.fib.prop.c8g2.domain.Color;
 import edu.upc.fib.prop.c8g2.domain.furniture.*;
 
+import java.util.Optional;
+
 public class FurnitureService {
     private FurnitureRepository repository;
 
@@ -23,5 +25,9 @@ public class FurnitureService {
 
     public void remove(String id) {
         repository.remove(new FurnitureId(id));
+    }
+
+    public Optional<Furniture> search(String id) {
+        return repository.search(new FurnitureId(id));
     }
 }

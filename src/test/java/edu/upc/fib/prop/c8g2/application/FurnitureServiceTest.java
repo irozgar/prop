@@ -8,9 +8,9 @@ import edu.upc.fib.prop.c8g2.infrastructure.persistence.InMemoryFurnitureReposit
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class FurnitureServiceTest {
     @Test
@@ -50,5 +50,23 @@ public class FurnitureServiceTest {
         service.remove(expected.getId().getValue());
 
         assertEquals(0, repository.all().size());
+    }
+
+    @Test
+    void searchFurniture() {
+        FurnitureRepository repository = new InMemoryFurnitureRepository();
+        FurnitureService service = new FurnitureService(repository);
+        Furniture expected = FurnitureMother.random();
+        service.create(
+                expected.getId().getValue(),
+                expected.getLength().getValue(),
+                expected.getWidth().getValue(),
+                expected.getType(),
+                expected.getColor().getRed(),
+                expected.getColor().getGreen(),
+                expected.getColor().getBlue()
+        );
+
+        assertEquals(Optional.of(expected), service.search(expected.getId().getValue()));
     }
 }
