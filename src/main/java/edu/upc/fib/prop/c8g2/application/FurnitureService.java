@@ -20,4 +20,8 @@ public class FurnitureService {
         );
         repository.save(furniture);
     }
+
+    public void remove(String id) {
+        repository.remove(new FurnitureId(id));
+    }
 }

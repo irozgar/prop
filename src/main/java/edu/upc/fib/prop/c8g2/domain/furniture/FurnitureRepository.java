@@ -5,4 +5,5 @@ import java.util.List;
 public interface FurnitureRepository {
     List<Furniture> all();
     void save(Furniture furniture);
+    void remove(FurnitureId id);
 }
