@@ -2,6 +2,9 @@ package habitaciones.dominio.controladores;
 
 import java.util.*;
 
+import edu.upc.fib.prop.c8g2.acl.furniture.FurnitureServiceWrapper;
+import edu.upc.fib.prop.c8g2.application.FurnitureService;
+import edu.upc.fib.prop.c8g2.infrastructure.persistence.InMemoryFurnitureRepository;
 import habitaciones.dominio.modelos.*;
 import habitaciones.dominio.modelos.enums.*;
 import habitaciones.dominio.modelos.restricciones.*;
@@ -18,6 +21,7 @@ public class CtrlDominio {
     private int muebleID;
     private int restriccionID;
     private int contenidoParedID;
+    private FurnitureServiceWrapper furnitureService;
 
     // Constructor y metodos de inicializacion
     public CtrlDominio() {
@@ -67,10 +71,15 @@ public class CtrlDominio {
     }
 
     public void anadirMueble(TMueble tipo, int longitud, int anchura, int red, int green, int blue) {
-        // TODO crear el color en funcion del mueble que sea
-        Color color = new Color(red, green, blue);
-        Mueble mueble = new Mueble(muebleID++, tipo, color, longitud, anchura);
-        muebles.add(mueble);
+        furnitureService.create(
+                muebleID++,
+                longitud,
+                anchura,
+                tipo,
+                red,
+                green,
+                blue
+        );
     }
 
     public void borrarMueble(Mueble mueble) {
@@ -83,7 +92,7 @@ public class CtrlDominio {
                 rDistIt.remove();
             }
         }
-        muebles.remove(mueble);
+        furnitureService.remove(mueble.getId());
     }
 
     public void borrarRestriccionDistancia(RestriccionDistancia restr) {
@@ -91,17 +100,15 @@ public class CtrlDominio {
     }
 
     public Mueble buscaMueble(int id) {
-        for (Mueble m : muebles) {
-            if (m.getId() == id) {
-                return m;
-            }
+        try {
+            return furnitureService.search(id);
+        } catch (IllegalArgumentException exception) {
+            return null;
         }
-
-        return null;
     }
 
     public ArrayList<Mueble> getMuebles() {
-        return muebles;
+        return new ArrayList<> (furnitureService.all());
     }
 
     public int getRestriccionId() {
@@ -132,26 +139,42 @@ public class CtrlDominio {
         rDistancia = new ArrayList<RestriccionDistancia>();
         rLimite = new ArrayList<RestriccionLimite>();
         contenidosPared = new ArrayList<ContenidoPared>();
+        furnitureService = new FurnitureServiceWrapper(new FurnitureService(new InMemoryFurnitureRepository()));
     }
 
     public void guardar(String path) throws java.io.FileNotFoundException {
-        Guardar.guardar(path, habitacion, muebles, rDistancia, rLimite, contenidosPared);
+        Guardar.guardar(path, habitacion, getMuebles(), rDistancia, rLimite, contenidosPared);
+    }
+
+    public void cargarMuebles(ArrayList<Mueble> muebles) {
+        this.muebles = muebles;
+        muebleID = -1;
+        if (muebles.size() == 0) muebleID = 0;
+        for (Mueble m : muebles) {
+            furnitureService.create(
+                    m.getId(),
+                    m.getLongitud(),
+                    m.getAnchura(),
+                    m.getTipoMueble(),
+                    m.getColor().getRed(),
+                    m.getColor().getGreen(),
+                    m.getColor().getBlue()
+            );
+            if (m.getId() > muebleID) muebleID = m.getId() + 1;
+        }
+
     }
 
     public void cargar(String path) throws java.io.FileNotFoundException {
         Cargar c = new Cargar(path);
-        muebles = new ArrayList<Mueble>();
+
         rDistancia = new ArrayList<RestriccionDistancia>();
         contenidosPared = new ArrayList<ContenidoPared>();
         habitacion = c.getHabitacion();
-        muebles = c.getMuebles();
+        cargarMuebles(c.getMuebles());
+
         rDistancia = c.getRestriccionesDist();
         contenidosPared = c.getContenidosPared();
-        muebleID = -1;
-        if (muebles.size() == 0) muebleID = 0;
-        for (Mueble m : muebles)
-            if (m.getId() > muebleID) muebleID = m.getId() + 1;
-
         restriccionID = -1;
         if (rDistancia.size() == 0) restriccionID = 0;
         for (Restriccion r : rDistancia)
